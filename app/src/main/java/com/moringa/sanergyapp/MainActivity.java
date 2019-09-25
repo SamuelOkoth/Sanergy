@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareMovieData() {
-        Employees employees = new Employees("Samuel Okoth", "12345678");
+        Employees employees = new Employees("Samuel Okoth", "id: 12345678");
         employeesList.add(employees);
 
-        employees = new Employees("Samuel Okoth", "12345678");
+        employees = new Employees("Samuel Okoth", "id: 12345678");
         employeesList.add(employees);
 
         employees = new Employees("Samuel Okoth",  "12345678");
