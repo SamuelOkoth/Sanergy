@@ -17,12 +17,12 @@ public class EmpAdapter extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
     private List<Employees> employeesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, email;
+        public TextView name,emp_id;
 
         public MyViewHolder(View view) {
             super(view);
             name= (TextView) view.findViewById(R.id.name);
-            email = (TextView) view.findViewById(R.id.email);
+            emp_id = (TextView) view.findViewById(R.id.emp_id);
 
         }
     }
@@ -44,7 +44,7 @@ public class EmpAdapter extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Employees employees = employeesList.get(position);
         holder.name.setText(employees.getEmp_name());
-        holder.email.setText(employees.getEmail());
+        holder.emp_id.setText(employees.getEmp_id());
 
     }
 

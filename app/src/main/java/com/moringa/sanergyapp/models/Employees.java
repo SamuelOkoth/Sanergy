@@ -21,7 +21,7 @@ public class Employees {
         this.emp_name = emp_name;
     }
 
-    public String getId(){
+    public String getEmp_id(){
         return  emp_id;
     }
     public void setEmp_id(String emp_id){
