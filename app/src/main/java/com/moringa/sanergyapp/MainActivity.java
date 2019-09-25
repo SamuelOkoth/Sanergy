@@ -109,10 +109,10 @@ public class MainActivity extends AppCompatActivity {
         employees = new Employees("Samuel Okoth", "12345678");
         employeesList.add(employees);
 
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
+        employees = new Employees("Samuel Okoth",  "12345678");
         employeesList.add(employees);
 
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
+        employees = new Employees("Samuel Okoth",  "12345678");
         employeesList.add(employees);
 
         mAdapter.notifyDataSetChanged();
