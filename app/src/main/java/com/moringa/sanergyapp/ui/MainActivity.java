@@ -1,7 +1,6 @@
-package com.moringa.sanergyapp;
+package com.moringa.sanergyapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmpAdapter;
 import com.moringa.sanergyapp.models.Employees;
 
