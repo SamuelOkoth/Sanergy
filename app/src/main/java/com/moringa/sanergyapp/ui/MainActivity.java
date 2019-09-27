@@ -1,17 +1,27 @@
 package com.moringa.sanergyapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmpAdapter;
@@ -21,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
@@ -30,110 +39,180 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        getSupportActionBar().setTitle("Employees");
+        getSupportActionBar().setTitle("Administrator");
 
-        mAdapter = new EmpAdapter(employeesList);
-        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+
+        initCollapsingToolbar();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        employeesList = new ArrayList<>();
+        mAdapter = new EmpAdapter(this, employeesList);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        prepareMovieData();
-        // adding inbuilt divider line
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        prepareAlbums();
+
+        try {
+            Glide.with(this).load(R.drawable.user).into((ImageView) findViewById(R.id.backdrop));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void prepareMovieData() {
-        Employees employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+    /**
+     * Initializing collapsing toolbar
+     * Will show and hide the toolbar title on scroll
+     */
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.setExpanded(true);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
 
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle(getString(R.string.app_name));
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
+    }
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+    /**
+     * Adding few albums for testing
+     */
+    private void prepareAlbums() {
+        int[] covers = new int[]{
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user};
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        Employees a = new Employees("Samuel Okoth", 13, covers[0]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Wafula Davis", 8, covers[1]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Janice Mukenyi", 11, covers[2]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Yommie Samora", 12, covers[3]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("John Onyango", 14, covers[4]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Wilfred Ouma", 1, covers[5]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Sarah Munini", 11, covers[6]);
+       employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Joe Munyi", 14, covers[7]);
+        employeesList.add(a);
 
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Nimo Said", 11, covers[8]);
+        employeesList.add(a);
 
-
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth", "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
-
-        employees = new Employees("Samuel Okoth",  "samuelokoth2017@gmail.com");
-        employeesList.add(employees);
+        a = new Employees("Levert Ouma", 17, covers[9]);
+        employeesList.add(a);
 
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+    /**
+     * RecyclerView item decoration - give equal margin around grid item
+     */
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             logout();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -142,3 +221,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
+
+
+
+
+
