@@ -1,4 +1,4 @@
-package com.moringa.sanergyapp;
+package com.moringa.sanergyapp.ui;
 
 
 
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.moringa.sanergyapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        getSupportActionBar().setTitle("");
         ButterKnife.bind(this);
         mAuth = FirebaseAuth.getInstance();
         createAuthProgressDialog();
