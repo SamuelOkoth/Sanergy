@@ -8,16 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
         android:theme="@style/AppTheme">
         <activity android:name=".ui.CreateAccountActivity"></activity>
-=======
-        android:theme="@style/AppTheme" >
+
+
         <activity android:name=".ui.AddEmployeeActivity" >
         </activity>
         <activity android:name=".ui.EmployeeDetailActivity" />
-        <activity android:name=".ui.CreateAccountActivity" />
->>>>>>> 1e0e10e140a4ceb37d9dd062503f7341a968b9ac
+
         <activity android:name=".ui.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,24 +1,20 @@
 package com.moringa.sanergyapp.ui;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
@@ -131,13 +127,11 @@ public class MainActivity extends AppCompatActivity {
         a = new Employees("Wilfred Ouma", 1,"Manager", covers[5]);
         employeesList.add(a);
 
-<<<<<<< HEAD
-        a = new Employees("Sarah Munini", 11, covers[6]);
-        employeesList.add(a);
-=======
+
+
         a = new Employees("Sarah Munini", 11,"Manager", covers[6]);
        employeesList.add(a);
->>>>>>> 1e0e10e140a4ceb37d9dd062503f7341a968b9ac
+
 
         a = new Employees("Joe Munyi", 14,"Manager", covers[7]);
         employeesList.add(a);

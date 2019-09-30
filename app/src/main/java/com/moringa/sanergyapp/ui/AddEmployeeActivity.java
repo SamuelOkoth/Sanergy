@@ -1,7 +1,10 @@
 package com.moringa.sanergyapp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.moringa.sanergyapp.R;
 
 public class AddEmployeeActivity extends AppCompatActivity {
 

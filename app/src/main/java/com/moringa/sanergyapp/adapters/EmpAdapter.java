@@ -21,17 +21,12 @@ import com.moringa.sanergyapp.ui.EmployeeDetailActivity;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
-<<<<<<< HEAD
     private Context mContext;
     private List<Employees> employeesList;
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title, count;
         public ImageView thumbnail, overflow;
         public MyViewHolder(View view) {
@@ -40,32 +35,16 @@ public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
+            itemView.setOnClickListener(this);
         }
-=======
-
-private Context mContext;
-private List<Employees> employeesList;
-
-public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView title, count;
-    public ImageView thumbnail, overflow;
-
-    public MyViewHolder(View view) {
-        super(view);
-        title = (TextView) view.findViewById(R.id.title);
-        count = (TextView) view.findViewById(R.id.count);
-        thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-        overflow = (ImageView) view.findViewById(R.id.overflow);
-        itemView.setOnClickListener(this);
-    }
-    @Override
-    public void onClick(View v) {
-        int itemPosition = getLayoutPosition();
-        Intent intent = new Intent(mContext, EmployeeDetailActivity.class);
-        intent.putExtra("position", itemPosition);
-        intent.putExtra("employees", Parcels.wrap(employeesList));
-        mContext.startActivity(intent);
->>>>>>> 1e0e10e140a4ceb37d9dd062503f7341a968b9ac
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, EmployeeDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("employees", Parcels.wrap(employeesList));
+            mContext.startActivity(intent);
+        }
     }
     public EmpAdapter(Context mContext, List<Employees> employeesList) {
         this.mContext = mContext;
@@ -127,3 +106,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         return employeesList.size();
     }
 }
+
+
+
+
