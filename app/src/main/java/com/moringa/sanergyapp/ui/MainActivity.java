@@ -1,5 +1,6 @@
 package com.moringa.sanergyapp.ui;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -27,7 +28,6 @@ import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmpAdapter;
 import com.moringa.sanergyapp.models.Employees;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
-    private  Glide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         employeesList.add(a);
 
         a = new Employees("Sarah Munini", 11, covers[6]);
-       employeesList.add(a);
+        employeesList.add(a);
 
         a = new Employees("Joe Munyi", 14, covers[7]);
         employeesList.add(a);
@@ -223,8 +222,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
-
-
-
-
 
