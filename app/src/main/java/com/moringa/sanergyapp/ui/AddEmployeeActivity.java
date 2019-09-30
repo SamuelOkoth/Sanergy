@@ -3,6 +3,8 @@ package com.moringa.sanergyapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.moringa.sanergyapp.R;
+
 public class AddEmployeeActivity extends AppCompatActivity {
 
     @Override

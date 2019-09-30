@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmpAdapter;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddEmployeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -94,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     /**
      * Adding few albums for testing
