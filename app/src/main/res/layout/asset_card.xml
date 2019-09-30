@@ -33,12 +33,6 @@
             android:padding="1dp"
             android:textColor="@color/colorForeign" />
         <TextView
-            android:id="@+id/txtGravity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:textColor="@color/colorForeign" />
-        <TextView
             android:id="@+id/txtDiameter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Administrator");
 
-
         initCollapsingToolbar();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(getString(R.string.app_name));
+                    collapsingToolbar.setTitle("Employees");
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbar.setTitle(" ");
@@ -113,34 +112,34 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.user,
                 R.drawable.user};
 
-        Employees a = new Employees("Samuel Okoth", 13, covers[0]);
+        Employees a = new Employees("Samuel Okoth", 13,"Manager", covers[0]);
         employeesList.add(a);
 
-        a = new Employees("Wafula Davis", 8, covers[1]);
+        a = new Employees("Wafula Davis", 8,"Manager", covers[1]);
         employeesList.add(a);
 
-        a = new Employees("Janice Mukenyi", 11, covers[2]);
+        a = new Employees("Janice Mukenyi", 11,"Manager", covers[2]);
         employeesList.add(a);
 
-        a = new Employees("Yommie Samora", 12, covers[3]);
+        a = new Employees("Yommie Samora", 12,"Manager", covers[3]);
         employeesList.add(a);
 
-        a = new Employees("John Onyango", 14, covers[4]);
+        a = new Employees("John Onyango", 14,"Manager", covers[4]);
         employeesList.add(a);
 
-        a = new Employees("Wilfred Ouma", 1, covers[5]);
+        a = new Employees("Wilfred Ouma", 1,"Manager", covers[5]);
         employeesList.add(a);
 
-        a = new Employees("Sarah Munini", 11, covers[6]);
+        a = new Employees("Sarah Munini", 11,"Manager", covers[6]);
        employeesList.add(a);
 
-        a = new Employees("Joe Munyi", 14, covers[7]);
+        a = new Employees("Joe Munyi", 14,"Manager", covers[7]);
         employeesList.add(a);
 
-        a = new Employees("Nimo Said", 11, covers[8]);
+        a = new Employees("Nimo Said", 11,"Manager", covers[8]);
         employeesList.add(a);
 
-        a = new Employees("Levert Ouma", 17, covers[9]);
+        a = new Employees("Levert Ouma", 17, "Manager",covers[9]);
         employeesList.add(a);
 
         mAdapter.notifyDataSetChanged();

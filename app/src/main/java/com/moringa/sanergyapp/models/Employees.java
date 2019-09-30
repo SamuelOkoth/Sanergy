@@ -7,14 +7,16 @@ public class Employees {
     String emp_name;
     int numOfAssets;
     int thumbnail;
+    String emp_title;
 
     public Employees() {
     }
 
-    public Employees(String emp_name,int numOfAssets,int thumbnail) {
+    public Employees(String emp_name,int numOfAssets,String emp_title, int thumbnail) {
         this.emp_name = emp_name;
         this.numOfAssets = numOfAssets;
         this.thumbnail = thumbnail;
+        this.emp_title =emp_title;
     }
 
     public String getEmp_name() {
@@ -23,6 +25,14 @@ public class Employees {
 
     public void setEmp_name(String emp_name) {
         this.emp_name = emp_name;
+    }
+
+    public String getEmp_title() {
+        return emp_title;
+    }
+
+    public void setEmp_title(String emp_title) {
+        this.emp_title   = emp_title;
     }
 
     public int getThumbnail(){

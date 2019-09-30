@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:id="@+id/restaurantImageView"
+            android:id="@+id/employeeImageView"
             android:src="@drawable/user"
             android:scaleType="centerCrop" />
 
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Employee Name"
-                android:id="@+id/restaurantNameTextView"
+                android:id="@+id/assetNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textSize="20sp"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="davisdavy96@gmail.com"
                 android:id="@+id/ratingTextView"
-                android:layout_alignTop="@+id/restaurantNameTextView"
+                android:layout_alignTop="@+id/assetNameTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorBg"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="customer care"
                 android:id="@+id/cuisineTextView"
-                android:layout_below="@+id/restaurantNameTextView"
+                android:layout_below="@+id/assetNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColor="@color/colorBg"
@@ -79,7 +79,6 @@
                 android:paddingRight="30dp">
               <!--         List        -->
 
-                <include layout="@layout/content_main" />
             </LinearLayout>
 
 

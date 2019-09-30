@@ -1,64 +1,38 @@
 package com.moringa.sanergyapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
 import com.moringa.sanergyapp.R;
-import com.moringa.sanergyapp.adapters.AssetAdapter;
-import com.moringa.sanergyapp.models.Assets;
+import com.moringa.sanergyapp.adapters.EmployeePagerAdapter;
+import com.moringa.sanergyapp.models.Employees;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
-    //a list to store all the products
-    List<Assets> assetsList;
 
-    //the recyclerview
-    RecyclerView recyclerView;
-
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
+    private EmployeePagerAdapter adapterViewPager;
+    ArrayList<Employees> mEmployees= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_detail);
+        ButterKnife.bind(this);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mEmployees = Parcels.unwrap(getIntent().getParcelableExtra("employees"));
+        int startingPosition = getIntent().getIntExtra("position", 0);
 
-        //initializing the productlist
-        assetsList = new ArrayList<>();
-
-        assetsList.add(
-                new Assets(
-                        "Shovel",
-                        "Broken",
-                        60000,
-                        R.drawable.shovel));
-
-        assetsList.add(
-                new Assets(
-                        "Overall",
-                        "Broken",
-                        563245,
-                        R.drawable.overall));
-
-        assetsList.add(
-                new Assets(
-                        "Cleaning",
-                        "Broken",
-                        56787654,
-                        R.drawable.cleaning));
-
-        //creating recyclerview adapter
-        AssetAdapter adapter = new AssetAdapter(this, assetsList);
-
-        //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);
+        adapterViewPager = new EmployeePagerAdapter(getSupportFragmentManager(), mEmployees);
+        mViewPager.setAdapter(adapterViewPager);
+        mViewPager.setCurrentItem(startingPosition);
     }
-
-
 }
