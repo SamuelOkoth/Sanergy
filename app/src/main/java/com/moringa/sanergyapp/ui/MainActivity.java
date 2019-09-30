@@ -27,6 +27,7 @@ import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmpAdapter;
 import com.moringa.sanergyapp.models.Employees;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
+    private  Glide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
