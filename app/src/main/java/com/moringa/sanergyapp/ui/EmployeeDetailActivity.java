@@ -1,6 +1,8 @@
 package com.moringa.sanergyapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -20,6 +22,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
+
     private EmployeePagerAdapter adapterViewPager;
     ArrayList<Employees> mEmployees= new ArrayList<>();
     @Override
@@ -34,5 +37,6 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         adapterViewPager = new EmployeePagerAdapter(getSupportFragmentManager(), mEmployees);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
+
     }
 }

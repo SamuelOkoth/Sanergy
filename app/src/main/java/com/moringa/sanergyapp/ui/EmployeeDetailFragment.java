@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.moringa.sanergyapp.R;
+import com.moringa.sanergyapp.adapters.AssetAdapter;
+import com.moringa.sanergyapp.models.Assets;
 import com.moringa.sanergyapp.models.Employees;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,12 +33,13 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class EmployeeDetailFragment extends Fragment {
-    //a list to store all the products
 
     //the recyclerview
-    private RecyclerView recyclerView;
-    //adapter
-    private LinearLayoutManager layoutManager;
+
+    private AssetAdapter mAdapter;
+    public ArrayList<Assets> assets = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+
 
     private Employees employees;
 
@@ -60,6 +66,8 @@ public class EmployeeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         employees = Parcels.unwrap(getArguments().getParcelable("employees"));
+
+
     }
 
 
@@ -68,15 +76,25 @@ public class EmployeeDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_employee_detail, container, false);
         ButterKnife.bind(this, view);
 
+        ListView listView =(ListView) view.findViewById(R.id.mainList);
+        String[] assetItems = {"Overall","Wheelbarrow","RainCoat",
+                               "Overall","Wheelbarrow","RainCoat",
+                               "Overall","Wheelbarrow","RainCoat"};
+
+        ArrayAdapter <String> listViewAdapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                assetItems
+        );
+        listView.setAdapter(listViewAdapter);
+
         Picasso.get().load(employees.getThumbnail()).into(mImageLabel);
         mNameLabel.setText(employees.getEmp_name());
-        //mCategoriesLabel.setText(employees.getNumOfAssets());
         mRatingLabel.setText(employees.getEmp_title());
-
-
         return view;
     }
 
-}
 
-//
+
+
+}

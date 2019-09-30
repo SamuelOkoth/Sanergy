@@ -79,8 +79,11 @@
                 android:paddingRight="30dp">
               <!--         List        -->
 
-                <include layout="@layout/content_main"/>
-
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mainList"
+                    android:layout_gravity="center_horizontal|top"/>
             </LinearLayout>
 
 
