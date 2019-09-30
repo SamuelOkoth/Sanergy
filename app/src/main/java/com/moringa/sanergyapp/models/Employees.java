@@ -1,16 +1,21 @@
 package com.moringa.sanergyapp.models;
+import org.parceler.Parcel;
 
+@Parcel
 public class Employees {
-    private String emp_name;
-
-    private String emp_id;
+    String emp_name;
+    int numOfAssets;
+    int thumbnail;
+    String emp_title;
 
     public Employees() {
     }
 
-    public Employees(String emp_name, String emp_id) {
+    public Employees(String emp_name,int numOfAssets,String emp_title, int thumbnail) {
         this.emp_name = emp_name;
-        this.emp_id= emp_id;
+        this.numOfAssets = numOfAssets;
+        this.thumbnail = thumbnail;
+        this.emp_title =emp_title;
     }
 
     public String getEmp_name() {
@@ -21,12 +26,28 @@ public class Employees {
         this.emp_name = emp_name;
     }
 
-    public String getEmp_id(){
-        return  emp_id;
+    public String getEmp_title() {
+        return emp_title;
     }
-    public void setEmp_id(String emp_id){
-        this.emp_id = emp_id;
+
+    public void setEmp_title(String emp_title) {
+        this.emp_title   = emp_title;
     }
+
+    public int getThumbnail(){
+        return  thumbnail;
+    }
+    public void setThumbnail(int thumbnail){
+        this.thumbnail= thumbnail;
+    }
+
+    public int getNumOfAssets(){
+        return  numOfAssets;
+    }
+    public void setEmp_image(int numOfAssets){
+        this.numOfAssets = numOfAssets;
+    }
+
 
 
 }
