@@ -1,6 +1,7 @@
 package com.moringa.sanergyapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.ui.EmployeeDetailActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +29,30 @@ import butterknife.ButterKnife;
 
 public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
 
-private Context mContext;
-private List<Employees> employeesList;
+    private Context mContext;
+    private List<Employees> employeesList;
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
-    public TextView title, count;
-    public ImageView thumbnail, overflow;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView title, count;
+        public ImageView thumbnail, overflow;
 
-    public MyViewHolder(View view) {
-        super(view);
-        title = (TextView) view.findViewById(R.id.title);
-        count = (TextView) view.findViewById(R.id.count);
-        thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-        overflow = (ImageView) view.findViewById(R.id.overflow);
+        public MyViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.title);
+            count = (TextView) view.findViewById(R.id.count);
+            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+            overflow = (ImageView) view.findViewById(R.id.overflow);
+            itemView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, EmployeeDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("employees", Parcels.wrap(employeesList));
+            mContext.startActivity(intent);
+        }
     }
-}
 
 
     public EmpAdapter(Context mContext, List<Employees> employeesList) {
@@ -84,28 +97,28 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         popup.show();
     }
 
-/**
- * Click listener for popup menu items
- */
-class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+    /**
+     * Click listener for popup menu items
+     */
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 
-    public MyMenuItemClickListener() {
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.action_add_favourite:
-                Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_play_next:
-                Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
+        public MyMenuItemClickListener() {
         }
-        return false;
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.action_add_favourite:
+                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.action_play_next:
+                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                    return true;
+                default:
+            }
+            return false;
+        }
     }
-}
 
     @Override
     public int getItemCount() {
