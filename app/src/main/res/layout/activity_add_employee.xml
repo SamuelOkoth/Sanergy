@@ -7,4 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".ui.AddEmployeeActivity">
 
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:hint="name"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAlt"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:hint="Post"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAlt"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="551dp" />
+
+
+    <Button
+        android:id="@+id/savedata"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="@color/colorAlt"
+        android:onClick="handleSaveData"
+        android:padding="10dp"
+        android:text="Add Employee"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints,OnClick" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
