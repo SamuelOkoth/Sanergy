@@ -21,11 +21,8 @@ import com.moringa.sanergyapp.ui.EmployeeDetailActivity;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
 
