@@ -24,9 +24,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
             <EditText
                 android:id="@+id/name"
@@ -36,62 +34,31 @@
                 android:inputType="textCapWords"
                 android:maxLines="1" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
+
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Post Field"
-                android:inputType="textEmailAddress"
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-            <EditText
-                android:id="@+id/numberOfAssets"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Number of Assets"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 android:maxLines="1" />
 
 
-
-        <Button
-            android:id="@+id/btn_save"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorBg"
-            android:text="Add"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/btnChoose"
-            android:text="Choose"
-            android:layout_width="match_parent"
-            android:background="@color/colorBg"
-            android:layout_marginTop="16dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnUpload"
-            android:text="Upload"
-            android:background="@color/colorBg"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <ImageView
-        android:id="@+id/imgView"
+
+
+    <Button
+        android:id="@+id/btn_add"
+        style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBg"
+        android:text="Add"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 </LinearLayout>
