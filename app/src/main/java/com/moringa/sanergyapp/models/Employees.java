@@ -1,5 +1,4 @@
 package com.moringa.sanergyapp.models;
-
 import org.parceler.Parcel;
 
 @Parcel

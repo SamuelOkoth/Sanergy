@@ -1,11 +1,9 @@
 package com.moringa.sanergyapp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmployeePagerAdapter;

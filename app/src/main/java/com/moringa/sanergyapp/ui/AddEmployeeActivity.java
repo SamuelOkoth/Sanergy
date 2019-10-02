@@ -39,6 +39,10 @@ import java.util.UUID;
 
 import butterknife.ButterKnife;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.moringa.sanergyapp.R;
+
 public class AddEmployeeActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TextView txtDetails;
