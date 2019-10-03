@@ -1,5 +1,6 @@
 package com.moringa.sanergyapp.ui;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -40,7 +41,9 @@ public class AddEmployeeActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View view){
+
                 NewEmployees employees = new NewEmployees(inputName.getText().toString(),inputTitle.getText().toString() );
+
                 mFirebaseDatabase.child("employees").push().setValue(employees);
                 finish();
             }

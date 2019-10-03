@@ -1,11 +1,11 @@
 package com.moringa.sanergyapp.ui;
 
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     /**
      * Adding few albums for testing
      */
@@ -145,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
         employeesList.add(a);
 
 
+
         a = new Employees("Sarah Munini", 11, "Manager", covers[6]);
-        employeesList.add(a);
 
 
         a = new Employees("Joe Munyi", 14, "Manager", covers[7]);

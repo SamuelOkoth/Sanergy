@@ -68,7 +68,7 @@
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
-              <!--         List        -->
+                <!--         List        -->
 
                 <ListView
                     android:layout_width="match_parent"

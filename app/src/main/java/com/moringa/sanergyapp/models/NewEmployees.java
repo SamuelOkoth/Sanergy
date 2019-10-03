@@ -11,7 +11,6 @@ public class NewEmployees {
     }
 
 
-
     public String getEmp_name() {
         return emp_name;
     }
@@ -27,6 +26,4 @@ public class NewEmployees {
     public void setEmp_title(String emp_title) {
         this.emp_title = emp_title;
     }
-
-
 }
