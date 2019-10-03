@@ -44,8 +44,6 @@ public class EmployeeDetailFragment extends Fragment {
     ImageView mImageLabel;
     @BindView(R.id.assetNameTextView)
     TextView mNameLabel;
-    @BindView(R.id.cuisineTextView)
-    TextView mCategoriesLabel;
     @BindView(R.id.ratingTextView)
     TextView mRatingLabel;
 

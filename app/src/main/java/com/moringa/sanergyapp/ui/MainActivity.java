@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity  {
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
     private FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity  {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +103,9 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
     }
+
+
+
 
     /**
      * Adding few albums for testing
