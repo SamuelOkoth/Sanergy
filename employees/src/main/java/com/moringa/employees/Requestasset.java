@@ -14,8 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Requestasset extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TextView txtDetails;
-    private EditText inputName, inputTitle;
-    private Button add;
+    private EditText inputName, inputTitle, inputNo;
+    private Button request;
 
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
@@ -31,16 +31,20 @@ public class Requestasset extends AppCompatActivity {
 
         inputName = (EditText) findViewById(R.id.name);
         inputTitle = (EditText) findViewById(R.id.field);
-        add = (Button) findViewById(R.id.btn_add);
+        inputNo = (EditText) findViewById(R.id.num);
+        request  = (Button) findViewById(R.id.btn_add);
         mFirebaseDatabase= mFirebaseInstance.getInstance().getReference();
 
-        add.setOnClickListener(new View.OnClickListener(){
+        request.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View view){
-              //  inputName.getText().toString(),inputTitle.getText().toString();
-                NewAsset asset = new NewAsset(inputName.getText().toString(),inputTitle.getText().toString(),inputName.getText().toString());
-                mFirebaseDatabase.child("employees").push().setValue(asset);
+
+
+                NewAsset asset = new NewAsset(inputName.getText().toString(),inputTitle.getText().toString(),inputNo.getText().toString());
+                mFirebaseDatabase.child("assets").push().setValue(asset);
+
                 finish();
+
             }
         });
     }

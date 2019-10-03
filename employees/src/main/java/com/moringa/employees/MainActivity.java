@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // TODO Auto-generated method stub
                 String value = adapter.getItem(position);
-                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,Status.class);
+            Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -59,16 +60,26 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
-            logout();
-            return true;
-        }
         if (id == R.id.action_requestasset) {
             requestasset();
             return  true;
         }
 
+
+        if (id == R.id.action_logout) {
+            logout();
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
+    }
+    private void requestasset() {
+        Intent intent = new Intent(MainActivity.this,Requestasset.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
+        finish();
     }
 
     private void logout() {
@@ -80,9 +91,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void requestasset() {
-        Intent intent = new Intent(MainActivity.this,Requestasset.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

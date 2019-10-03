@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Requestasset"></activity>
+        <activity android:name=".Status"></activity>
+        <activity android:name=".Requestasset" />
         <activity android:name=".CreateAccountActivity" /> <!-- <activity android:name=".AddEmployeeActivity" > -->
         <!-- <activity android:name=".ui.EmployeeDetailActivity" /> -->
         <activity android:name=".LoginActivity">
@@ -19,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
