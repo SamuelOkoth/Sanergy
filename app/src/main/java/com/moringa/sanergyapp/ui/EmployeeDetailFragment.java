@@ -44,8 +44,6 @@ public class EmployeeDetailFragment extends Fragment {
     ImageView mImageLabel;
     @BindView(R.id.assetNameTextView)
     TextView mNameLabel;
-    @BindView(R.id.cuisineTextView)
-    TextView mCategoriesLabel;
     @BindView(R.id.ratingTextView)
     TextView mRatingLabel;
 
@@ -75,8 +73,8 @@ public class EmployeeDetailFragment extends Fragment {
 
         ListView listView =(ListView) view.findViewById(R.id.mainList);
         String[] assetItems = {"Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat"};
+                "Overall","Wheelbarrow","RainCoat",
+                "Overall","Wheelbarrow","RainCoat"};
 
         ArrayAdapter <String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),

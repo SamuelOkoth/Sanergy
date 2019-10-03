@@ -49,16 +49,7 @@
                 android:textColor="@color/colorBg"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="customer care"
-                android:id="@+id/cuisineTextView"
-                android:layout_below="@+id/assetNameTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="@color/colorBg"
-                android:textStyle="italic" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -77,7 +68,7 @@
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
-              <!--         List        -->
+                <!--         List        -->
 
                 <ListView
                     android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.moringa.sanergyapp.adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -106,7 +107,4 @@ public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
         return employeesList.size();
     }
 }
-
-
-
 
