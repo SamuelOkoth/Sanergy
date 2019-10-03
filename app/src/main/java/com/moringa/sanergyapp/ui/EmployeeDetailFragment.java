@@ -4,7 +4,6 @@ package com.moringa.sanergyapp.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,13 +17,12 @@ import android.widget.TextView;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.AssetAdapter;
 import com.moringa.sanergyapp.models.Assets;
-import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.models.NewEmployees;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +39,7 @@ public class EmployeeDetailFragment extends Fragment {
     private RecyclerView mRecyclerView;
 
 
-    private Employees employees;
+    private NewEmployees employees;
 
     @BindView(R.id.employeeImageView)
     ImageView mImageLabel;
@@ -53,7 +51,7 @@ public class EmployeeDetailFragment extends Fragment {
     public EmployeeDetailFragment() {
         // Required empty public constructor
     }
-    public static EmployeeDetailFragment newInstance(Employees employees) {
+    public static EmployeeDetailFragment newInstance(NewEmployees employees) {
         EmployeeDetailFragment employeeDetailFragment = new EmployeeDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("employees", Parcels.wrap(employees));
@@ -86,7 +84,7 @@ public class EmployeeDetailFragment extends Fragment {
         );
         listView.setAdapter(listViewAdapter);
 
-        Picasso.get().load(employees.getThumbnail()).into(mImageLabel);
+        Picasso.get().load(employees.getEmp_image()).into(mImageLabel);
         mNameLabel.setText(employees.getEmp_name());
         mRatingLabel.setText(employees.getEmp_title());
         return view;

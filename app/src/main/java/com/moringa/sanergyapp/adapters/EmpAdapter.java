@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.moringa.sanergyapp.R;
-import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.models.NewEmployees;
 import com.moringa.sanergyapp.ui.EmployeeDetailActivity;
 
 import org.parceler.Parcels;
@@ -27,7 +27,7 @@ import java.util.List;
 public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
 
 private Context mContext;
-private List<Employees> employeesList;
+private List<NewEmployees> employeesList;
 
 public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView title, count;
@@ -52,7 +52,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 }
 
 
-    public EmpAdapter(Context mContext, List<Employees> employeesList) {
+    public EmpAdapter(Context mContext, List<NewEmployees> employeesList) {
         this.mContext = mContext;
         this.employeesList = employeesList;
     }
@@ -67,12 +67,12 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Employees employees = employeesList.get(position);
+        NewEmployees employees = employeesList.get(position);
         holder.title.setText(employees.getEmp_name());
-        holder.count.setText(employees.getNumOfAssets() + " assets");
+        holder.count.setText(employees.getNo_assets() + " assets");
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(employees.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(employees.getEmp_image()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

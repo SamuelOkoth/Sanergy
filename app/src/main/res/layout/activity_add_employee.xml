@@ -34,10 +34,6 @@
                 android:inputType="textCapWords"
                 android:maxLines="1" />
 
-
-
-
-
             <EditText
                 android:id="@+id/field"
                 android:layout_width="match_parent"
@@ -45,20 +41,28 @@
                 android:hint="Post Field"
                 android:inputType="text"
                 android:maxLines="1" />
+        <EditText
+            android:id="@+id/noAsset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of Asset Auto-Assigned"
+            android:inputType="textCapWords"
+            android:maxLines="1" />
 
 
 
     </LinearLayout>
 
-
     <Button
-        android:id="@+id/btn_add"
-        style="?android:textAppearanceSmall"
+        android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/ShowImageView"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorText"
         android:background="@color/colorBg"
-        android:text="Add"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:text="Choose Image" />
+
+
+
 </LinearLayout>
