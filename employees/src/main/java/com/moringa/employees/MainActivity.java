@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     TextView textView;
     String[] listItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-
-        listView=(ListView)findViewById(R.id.listView);
-        textView=(TextView)findViewById(R.id.textView);
+        listView = (ListView) findViewById(R.id.listView);
+        textView = (TextView) findViewById(R.id.textView);
         listItem = getResources().getStringArray(R.array.array_technology);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                                                                       android.R.layout.simple_list_item_1, android.R.id.text1, listItem);
@@ -37,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // TODO Auto-generated method stub
-                String value=adapter.getItem(position);
+                String value = adapter.getItem(position);
                 Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
 
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,13 +63,25 @@ public class MainActivity extends AppCompatActivity {
             logout();
             return true;
         }
+        if (id == R.id.action_requestasset) {
+            requestasset();
+            return  true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
+
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+
+    private void requestasset() {
+        Intent intent = new Intent(MainActivity.this,Requestasset.class);
         startActivity(intent);
         finish();
     }

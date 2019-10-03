@@ -7,9 +7,9 @@
         android:visible="true"
         app:showAsAction="never" />
 
-    <!--<item-->
-        <!--android:id="@+id/action_addemployee"-->
-        <!--android:title="Add Employee"-->
-        <!--android:visible="true"-->
-        <!--app:showAsAction="never" />-->
+    <item
+        android:id="@+id/action_requestasset"
+        android:title="Request Asset"
+        android:visible="true"
+        app:showAsAction="never" />
 </menu>
