@@ -1,12 +1,13 @@
 package com.moringa.sanergyapp.ui;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.EmployeePagerAdapter;
+import com.moringa.sanergyapp.models.Employees;
 
 import org.parceler.Parcels;
 

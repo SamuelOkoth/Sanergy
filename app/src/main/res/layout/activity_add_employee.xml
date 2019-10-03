@@ -26,43 +26,39 @@
 
 
 
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Employee Name"
-                android:inputType="textCapWords"
-                android:maxLines="1" />
-
-            <EditText
-                android:id="@+id/field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Post Field"
-                android:inputType="text"
-                android:maxLines="1" />
         <EditText
-            android:id="@+id/noAsset"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Number of Asset Auto-Assigned"
+            android:hint="Employee Name"
             android:inputType="textCapWords"
+            android:maxLines="1" />
+
+
+
+
+
+        <EditText
+            android:id="@+id/field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post Field"
+            android:inputType="text"
             android:maxLines="1" />
 
 
 
     </LinearLayout>
 
+
     <Button
-        android:id="@+id/add"
+        android:id="@+id/btn_add"
+        style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ShowImageView"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorText"
+        android:layout_marginTop="16dp"
         android:background="@color/colorBg"
-        android:text="Choose Image" />
-
-
-
+        android:text="Add"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 </LinearLayout>

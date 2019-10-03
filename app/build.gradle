@@ -57,16 +57,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:17.0.0'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.firebaseui:firebase-ui-database:3.3.1'
-    //gilde
+    //glide
     implementation("com.github.bumptech.glide:glide:4.7.1") {
         exclude group: "com.android.support"
     }
-    //perceler
+
+//perceler
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.firebase:firebase-storage:9.2.1'
-}
 
+
+}
 apply plugin: 'com.google.gms.google-services'

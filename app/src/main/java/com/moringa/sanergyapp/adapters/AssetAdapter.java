@@ -21,12 +21,10 @@ import butterknife.ButterKnife;
 public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetViewHolder> {
     private ArrayList<Assets> mAssets = new ArrayList<>();
     private Context mContext;
-
     public AssetAdapter(Context context, ArrayList<Assets> assets) {
         mContext = context;
         mAssets= assets;
     }
-
     public class AssetViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.assetImage)
         ImageView mImageView;
@@ -36,21 +34,17 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetViewHol
         TextView mCondition;
         @BindView(R.id.assetStatus)
         TextView mStatus;
-
         private Context mContext;
-
         public AssetViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
         }
-
         public void bindAsset(Assets assets) {
             mNameView.setText(assets.getAsset_name());
             mCondition.setText(assets.getAsset_condition());
             mStatus.setText(assets.getAsset_status());
             Picasso.get().load(assets.getAsset_image()).into(mImageView);
-
         }
     }
     @Override

@@ -1,243 +1,216 @@
 package com.moringa.sanergyapp.ui;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
+import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.moringa.sanergyapp.R;
 
-import com.moringa.sanergyapp.adapters.ViewHolder;
-import com.moringa.sanergyapp.models.NewEmployees;
+import com.moringa.sanergyapp.adapters.EmpAdapter;
+import com.moringa.sanergyapp.models.Employees;
 
-import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    LinearLayoutManager mLayoutManager; //for sorting
-    SharedPreferences mSharedPref; //for saving sort settings
-    RecyclerView mRecyclerView;
-    FirebaseDatabase mFirebaseDatabase;
-    DatabaseReference mRef;
+    private List<Employees> employeesList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private EmpAdapter mAdapter;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Administrator");
 
-        //Actionbar
-        ActionBar actionBar = getSupportActionBar();
-        //set title
-        mSharedPref = getSharedPreferences("SortSettings", MODE_PRIVATE);
-        String mSorting = mSharedPref.getString("Sort", "newest"); //where if no settingsis selected newest will be default
+        initCollapsingToolbar();
 
-        if (mSorting.equals("newest")) {
-            mLayoutManager = new LinearLayoutManager(this);
-            //this will load the items from bottom means newest first
-            mLayoutManager.setReverseLayout(true);
-            mLayoutManager.setStackFromEnd(true);
-        } else if (mSorting.equals("oldest")) {
-            mLayoutManager = new LinearLayoutManager(this);
-            //this will load the items from bottom means oldest first
-            mLayoutManager.setReverseLayout(false);
-            mLayoutManager.setStackFromEnd(false);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        employeesList = new ArrayList<>();
+        mAdapter = new EmpAdapter(this, employeesList);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        prepareAlbums();
+
+        try {
+            Glide.with(this).load(R.drawable.user).into((ImageView) findViewById(R.id.backdrop));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        //RecyclerView
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-
-        //set layout as LinearLayout
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //send Query to FirebaseDatabase
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference("Data");
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddEmployeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    //search data
-    private void firebaseSearch(String searchText) {
+    /**
+     * Initializing collapsing toolbar
+     * Will show and hide the toolbar title on scroll
+     */
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.setExpanded(true);
 
-        //convert string entered in SearchView to lowercase
-        String query = searchText.toLowerCase();
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
 
-        Query firebaseSearchQuery = mRef.orderByChild("search").startAt(query).endAt(query + "\uf8ff");
-
-        FirebaseRecyclerAdapter<NewEmployees, ViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<NewEmployees, ViewHolder>(
-                        NewEmployees.class,
-                        R.layout.employee_card,
-                        ViewHolder.class,
-                        firebaseSearchQuery
-                ) {
-                    @Override
-                    protected void populateViewHolder(ViewHolder viewHolder, NewEmployees model, int position) {
-                        viewHolder.setDetails(getApplicationContext(), model.getEmp_name(), model.getEmp_title(),model.getNo_assets(), model.getEmp_image());
-                    }
-
-                    @Override
-                    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-                        ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
-
-                        viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                //Views
-                                TextView mNameTv = view.findViewById(R.id.rNameTv);
-                                TextView mTitleTv = view.findViewById(R.id.rTitleTv);
-                                TextView mNoAssetTv = view.findViewById(R.id.noAsset);
-                                ImageView mImageView = view.findViewById(R.id.rImageView);
-                                //get data from views
-                                String mName = mNameTv.getText().toString();
-                                String mTitle = mTitleTv.getText().toString();
-                                String mNoAssets = mNoAssetTv.getText().toString();
-                                Drawable mDrawable = mImageView.getDrawable();
-                                Bitmap mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
-
-                                //pass this data to new activity
-                                Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                mBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                                byte[] bytes = stream.toByteArray();
-                                intent.putExtra("emp_image", bytes); //put bitmap image as array of bytes
-                                intent.putExtra("emp_name", mName); // put title
-                                intent.putExtra("emp_title", mTitle); // put title
-                                intent.putExtra("no_assets", mNoAssets); //put description
-                                startActivity(intent); //start activity
-
-                            }
-
-                            @Override
-                            public void onItemLongClick(View view, int position) {
-                                //TODO do your own implementaion on long item click
-                            }
-                        });
-
-                        return viewHolder;
-                    }
-
-
-                };
-
-        //set adapter to recyclerview
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle("Employees");
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
     }
 
-    //load data into recycler view onStart
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseRecyclerAdapter<NewEmployees, ViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<NewEmployees, ViewHolder>(
-                        NewEmployees.class,
-                        R.layout.employee_card,
-                        ViewHolder.class,
-                        mRef
-                ) {
-                    @Override
-                    protected void populateViewHolder(ViewHolder viewHolder, NewEmployees model, int position) {
-                        viewHolder.setDetails(getApplicationContext(), model.getEmp_name(), model.getEmp_title(),model.getNo_assets(), model.getEmp_image());
-                    }
 
-                    @Override
-                    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    /**
+     * Adding few albums for testing
+     */
+    private void prepareAlbums() {
+        int[] covers = new int[]{
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user,
+                R.drawable.user};
 
-                        ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
+        Employees a = new Employees("Samuel Okoth", 13, "Manager", covers[0]);
+        employeesList.add(a);
 
-                        viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                //Views
-                                TextView mNameTv = view.findViewById(R.id.rNameTv);
-                                TextView mTitleTv = view.findViewById(R.id.rTitleTv);
-                                TextView mNoAssets = view.findViewById(R.id.noAsset);
-                                ImageView mImageView = view.findViewById(R.id.rImageView);
-                                //get data from views
-                                String mName = mNameTv.getText().toString();
-                                String mTitle = mTitleTv.getText().toString();
-                                String mAssets = mNoAssets.getText().toString();
-                                Drawable mDrawable = mImageView.getDrawable();
-                                Bitmap mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
+        a = new Employees("Wafula Davis", 8, "Manager", covers[1]);
+        employeesList.add(a);
 
-                                //pass this data to new activity
-                                Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                mBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                                byte[] bytes = stream.toByteArray();
-                                intent.putExtra("emp_image", bytes); //put bitmap image as array of bytes
-                                intent.putExtra("emp_name", mName); // put title
-                                intent.putExtra("emp_title", mTitle); // put title
-                                intent.putExtra("no_assets", mAssets); //put description
-                                startActivity(intent); //start activity
+        a = new Employees("Janice Mukenyi", 11, "Manager", covers[2]);
+        employeesList.add(a);
+
+        a = new Employees("Yommie Samora", 12, "Manager", covers[3]);
+        employeesList.add(a);
+
+        a = new Employees("John Onyango", 14, "Manager", covers[4]);
+        employeesList.add(a);
+
+        a = new Employees("Wilfred Ouma", 1, "Manager", covers[5]);
+        employeesList.add(a);
 
 
-                            }
+        a = new Employees("Sarah Munini", 11, "Manager", covers[6]);
+        employeesList.add(a);
 
-                            @Override
-                            public void onItemLongClick(View view, int position) {
-                                //TODO do your own implementaion on long item click
-                            }
-                        });
 
-                        return viewHolder;
-                    }
+        a = new Employees("Joe Munyi", 14, "Manager", covers[7]);
+        employeesList.add(a);
 
-                };
+        a = new Employees("Nimo Said", 11, "Manager", covers[8]);
+        employeesList.add(a);
 
-        //set adapter to recyclerview
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+        a = new Employees("Levert Ouma", 17, "Manager", covers[9]);
+        employeesList.add(a);
+
+        mAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * RecyclerView item decoration - give equal margin around grid item
+     */
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        getMenuInflater().inflate(R.menu.menu_search, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                firebaseSearch(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //Filter as you type
-                firebaseSearch(newText);
-                return false;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -253,47 +226,10 @@ public class MainActivity extends AppCompatActivity {
             logout();
             return true;
         }
-        if (id == R.id.action_sort) {
-            //display alert dialog to choose sorting
-            showSortDialog();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
-    private void showSortDialog() {
-        //options to display in dialog
-        String[] sortOptions = {" Newest", " Oldest"};
-        //create alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sort by") //set title
-                .setIcon(R.drawable.ic_sort) //set icon
-                .setItems(sortOptions, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // The 'which' argument contains the index position of the selected item
-                        // 0 means "Newest" and 1 means "oldest"
-                        if (which == 0) {
-                            //sort by newest
-                            //Edit our shared preferences
-                            SharedPreferences.Editor editor = mSharedPref.edit();
-                            editor.putString("Sort", "newest"); //where 'Sort' is key & 'newest' is value
-                            editor.apply(); // apply/save the value in our shared preferences
-                            recreate(); //restart activity to take effect
-                        } else if (which == 1) {
-                            {
-                                //sort by oldest
-                                //Edit our shared preferences
-                                SharedPreferences.Editor editor = mSharedPref.edit();
-                                editor.putString("Sort", "oldest"); //where 'Sort' is key & 'oldest' is value
-                                editor.apply(); // apply/save the value in our shared preferences
-                                recreate(); //restart activity to take effect
-                            }
-                        }
-                    }
-                });
-        builder.show();
-    }
+
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -302,8 +238,3 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
-
-
-
-
-

@@ -3,8 +3,10 @@ package com.moringa.sanergyapp.ui;
 
 import android.os.Bundle;
 
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +16,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.AssetAdapter;
 import com.moringa.sanergyapp.models.Assets;
+import com.moringa.sanergyapp.models.Employees;
 import com.moringa.sanergyapp.models.NewEmployees;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +32,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -39,7 +44,7 @@ public class EmployeeDetailFragment extends Fragment {
     private RecyclerView mRecyclerView;
 
 
-    private NewEmployees employees;
+    private Employees employees;
 
     @BindView(R.id.employeeImageView)
     ImageView mImageLabel;
@@ -51,7 +56,7 @@ public class EmployeeDetailFragment extends Fragment {
     public EmployeeDetailFragment() {
         // Required empty public constructor
     }
-    public static EmployeeDetailFragment newInstance(NewEmployees employees) {
+    public static EmployeeDetailFragment newInstance(Employees employees) {
         EmployeeDetailFragment employeeDetailFragment = new EmployeeDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("employees", Parcels.wrap(employees));
@@ -74,8 +79,8 @@ public class EmployeeDetailFragment extends Fragment {
 
         ListView listView =(ListView) view.findViewById(R.id.mainList);
         String[] assetItems = {"Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat"};
+                "Overall","Wheelbarrow","RainCoat",
+                "Overall","Wheelbarrow","RainCoat"};
 
         ArrayAdapter <String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
@@ -84,7 +89,7 @@ public class EmployeeDetailFragment extends Fragment {
         );
         listView.setAdapter(listViewAdapter);
 
-        Picasso.get().load(employees.getEmp_image()).into(mImageLabel);
+        Picasso.get().load(employees.getThumbnail()).into(mImageLabel);
         mNameLabel.setText(employees.getEmp_name());
         mRatingLabel.setText(employees.getEmp_title());
         return view;

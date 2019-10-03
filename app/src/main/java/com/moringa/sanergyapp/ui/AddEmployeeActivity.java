@@ -13,10 +13,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.models.NewEmployees;
 
+
 public class AddEmployeeActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TextView txtDetails;
-    private EditText inputName, inputTitle,noAssets;
+    private EditText inputName, inputTitle;
     private Button add;
 
     private DatabaseReference mFirebaseDatabase;
@@ -33,18 +34,16 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
         inputName = (EditText) findViewById(R.id.name);
         inputTitle = (EditText) findViewById(R.id.field);
-        noAssets = (EditText) findViewById(R.id.noAsset);
-        add = (Button) findViewById(R.id.add);
+        add = (Button) findViewById(R.id.btn_add);
         mFirebaseDatabase= mFirebaseInstance.getInstance().getReference();
 
         add.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View view){
-                NewEmployees employees = new NewEmployees(inputName.getText().toString(),inputTitle.getText().toString(),noAssets.getText().toString(),inpu);
+                NewEmployees employees = new NewEmployees(inputName.getText().toString(),inputTitle.getText().toString() );
                 mFirebaseDatabase.child("employees").push().setValue(employees);
                 finish();
             }
         });
     }
 }
-
