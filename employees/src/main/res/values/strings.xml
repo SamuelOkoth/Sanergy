@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Employees</string>
+    <string name="app_name">Assets</string>
+    <string-array name="array_technology">
+        <item>Laptop</item>
+        <item>Bag</item>
+        <item>Gumboot</item>
+        <item>Credit</item>
+        <item>Pens</item>
+        <item>Umbrella</item>
+        <item>Uniform</item>
+        <item>Tissue Rolls</item>
+        <item>Car</item>
+        <item>Phone</item>
+        <item>Diary</item>
+        <item>Camera</item>
+    </string-array>
 </resources>

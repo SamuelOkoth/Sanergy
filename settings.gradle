@@ -1,1 +1,1 @@
-include ':app', ':employees', ':linemanager'
+include ':app', ':employees', ':linemanager', ':workers', ':notify'
