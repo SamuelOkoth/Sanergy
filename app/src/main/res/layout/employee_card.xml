@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="@color/colorBg"
+            android:background="@color/colorBgLight"
             android:layout_height="match_parent">
 
             <ImageView

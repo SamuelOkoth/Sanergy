@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         prepareAlbums();
 
         try {
-            Glide.with(this).load(R.drawable.user).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.conference).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
+                R.drawable.guy1,
+                R.drawable.guy2,
+                R.drawable.guy3,
+                R.drawable.guy4,
+                R.drawable.guy5,
+                R.drawable.guy6,
+                R.drawable.guy7,
+                R.drawable.guy8,
+                R.drawable.guy9,
                 R.drawable.user,
                 R.drawable.user};
 

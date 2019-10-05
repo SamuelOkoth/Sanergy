@@ -110,7 +110,3 @@ public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0062c847de805894baacb8168f589b6112dcb6b7
