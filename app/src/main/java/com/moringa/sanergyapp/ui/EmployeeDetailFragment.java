@@ -1,6 +1,7 @@
 package com.moringa.sanergyapp.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -45,7 +46,8 @@ public class EmployeeDetailFragment extends Fragment {
 
 
     private Employees employees;
-
+@BindView(R.id.sendAssetTextView)
+    TextView sendAssetTextView;
     @BindView(R.id.employeeImageView)
     ImageView mImageLabel;
     @BindView(R.id.assetNameTextView)
@@ -76,6 +78,15 @@ public class EmployeeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_employee_detail, container, false);
         ButterKnife.bind(this, view);
+
+        sendAssetTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent(getActivity(),SendRequestActivity.class);
+                startActivity(sendIntent);
+
+            }
+        });
 
         ListView listView =(ListView) view.findViewById(R.id.mainList);
         String[] assetItems = {"Overall","Wheelbarrow","RainCoat",
