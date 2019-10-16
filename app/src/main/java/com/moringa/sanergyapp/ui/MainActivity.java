@@ -34,6 +34,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     /**
      * Initializing collapsing toolbar
@@ -236,4 +238,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }
+
