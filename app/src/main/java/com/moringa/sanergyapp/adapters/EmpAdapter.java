@@ -1,5 +1,6 @@
 package com.moringa.sanergyapp.adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.models.NewEmployees;
 import com.moringa.sanergyapp.ui.EmployeeDetailActivity;
 
 import org.parceler.Parcels;
 
 import java.util.List;
+
 
 public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
     private Context mContext;
@@ -63,50 +66,50 @@ public class EmpAdapter  extends RecyclerView.Adapter<EmpAdapter.MyViewHolder> {
         holder.count.setText(employees.getNumOfAssets() + " assets");
         // loading album cover using Glide library
         Glide.with(mContext).load(employees.getThumbnail()).into(holder.thumbnail);
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });
+//        holder.overflow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showPopupMenu(holder.overflow);
+//            }
+//        });
     }
-    /**
-     * Showing popup menu when tapping on 3 dots
-     */
-    private void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_employees, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }
-    /**
-     * Click listener for popup menu items
-     */
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-        public MyMenuItemClickListener() {
-        }
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                    return true;
-                default:
-            }
-            return false;
-        }
-    }
+//    /**
+//     * Showing popup menu when tapping on 3 dots
+//     */
+//    private void showPopupMenu(View view) {
+//        // inflate menu
+//        PopupMenu popup = new PopupMenu(mContext, view);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.menu_employees, popup.getMenu());
+//        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+//        popup.show();
+//    }
+//    /**
+//     * Click listener for popup menu items
+//     */
+//    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+//        public MyMenuItemClickListener() {
+//        }
+//        @Override
+//        public boolean onMenuItemClick(MenuItem menuItem) {
+//            switch (menuItem.getItemId()) {
+//                case R.id.action_add_favourite:
+//
+//                    Toast.makeText(mContext, "View Assets", Toast.LENGTH_SHORT).show();
+//
+//                    return true;
+//                case R.id.action_play_next:
+//
+//                    Toast.makeText(mContext, "Send Asset", Toast.LENGTH_SHORT).show();
+//                    return true;
+//                default:
+//            }
+//            return false;
+//        }
+//    }
     @Override
     public int getItemCount() {
         return employeesList.size();
     }
 }
-
-
-
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "422476198892",
+    "firebase_url": "https://linemanager-70959.firebaseio.com",
+    "project_id": "linemanager-70959",
+    "storage_bucket": "linemanager-70959.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422476198892:android:b9142e15aee8c69880c6c9",
+        "android_client_info": {
+          "package_name": "com.moringa.linemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422476198892-rbb535nb4a4mts2ms7366p9jqj4isklt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringa.linemanager",
+            "certificate_hash": "0605db6d116d2cd1b995cb5300575151a0834569"
+          }
+        },
+        {
+          "client_id": "422476198892-aaf058kas2e5b9n6jjgdt3lcug2kn8qd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfi3Dq_UYmns6Tj9TDbAQZyl1HKslZ_2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422476198892-aaf058kas2e5b9n6jjgdt3lcug2kn8qd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -39,14 +39,28 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/sendAssetTextView"
+                android:layout_width="149dp"
                 android:layout_height="wrap_content"
-                android:text="davisdavy96@gmail.com"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="252dp"
+                android:layout_marginEnd="20dp"
+                android:text="Send Asset"
+                android:textColor="@color/colorBgLight"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
                 android:id="@+id/ratingTextView"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/assetNameTextView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/colorBg"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="205dp"
+                android:text="davisdavy96@gmail.com"
+                android:textColor="@color/colorBgLight"
                 android:textStyle="bold" />
 
 
@@ -68,7 +82,7 @@
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
-              <!--         List        -->
+                <!--         List        -->
 
                 <ListView
                     android:layout_width="match_parent"

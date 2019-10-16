@@ -1,5 +1,6 @@
 package com.moringa.sanergyapp.adapters;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

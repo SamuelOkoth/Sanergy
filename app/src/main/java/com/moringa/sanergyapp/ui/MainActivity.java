@@ -1,6 +1,12 @@
 package com.moringa.sanergyapp.ui;
 
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -11,24 +17,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.moringa.sanergyapp.R;
+
 import com.moringa.sanergyapp.adapters.EmpAdapter;
 import com.moringa.sanergyapp.models.Employees;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+
+public class MainActivity extends AppCompatActivity {
+
     private List<Employees> employeesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private EmpAdapter mAdapter;
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity  {
         prepareAlbums();
 
         try {
-            Glide.with(this).load(R.drawable.user).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.conference).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,57 +110,53 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
 
-
-
-
     /**
      * Adding few albums for testing
      */
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
-                R.drawable.user,
+                R.drawable.guy1,
+                R.drawable.guy2,
+                R.drawable.guy3,
+                R.drawable.guy4,
+                R.drawable.guy5,
+                R.drawable.guy6,
+                R.drawable.guy7,
+                R.drawable.guy8,
+                R.drawable.guy9,
                 R.drawable.user,
                 R.drawable.user};
 
-        Employees a = new Employees("Samuel Okoth", 13,"Manager", covers[0]);
+        Employees a = new Employees("Samuel Okoth", 13, "Manager", covers[0]);
         employeesList.add(a);
 
-        a = new Employees("Wafula Davis", 8,"Manager", covers[1]);
+        a = new Employees("Wafula Davis", 8, "Manager", covers[1]);
         employeesList.add(a);
 
-        a = new Employees("Janice Mukenyi", 11,"Manager", covers[2]);
+        a = new Employees("Janice Mukenyi", 11, "Manager", covers[2]);
         employeesList.add(a);
 
-        a = new Employees("Yommie Samora", 12,"Manager", covers[3]);
+        a = new Employees("Yommie Samora", 12, "Manager", covers[3]);
         employeesList.add(a);
 
-        a = new Employees("John Onyango", 14,"Manager", covers[4]);
+        a = new Employees("John Onyango", 14, "Manager", covers[4]);
         employeesList.add(a);
 
-        a = new Employees("Wilfred Ouma", 1,"Manager", covers[5]);
+        a = new Employees("Wilfred Ouma", 1, "Manager", covers[5]);
         employeesList.add(a);
 
 
 
-        a = new Employees("Sarah Munini", 11,"Manager", covers[6]);
-       employeesList.add(a);
+        a = new Employees("Sarah Munini", 11, "Manager", covers[6]);
 
 
-        a = new Employees("Joe Munyi", 14,"Manager", covers[7]);
+        a = new Employees("Joe Munyi", 14, "Manager", covers[7]);
         employeesList.add(a);
 
-        a = new Employees("Nimo Said", 11,"Manager", covers[8]);
+        a = new Employees("Nimo Said", 11, "Manager", covers[8]);
         employeesList.add(a);
 
-        a = new Employees("Levert Ouma", 17, "Manager",covers[9]);
+        a = new Employees("Levert Ouma", 17, "Manager", covers[9]);
         employeesList.add(a);
 
         mAdapter.notifyDataSetChanged();
@@ -205,6 +207,7 @@ public class MainActivity extends AppCompatActivity  {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -227,6 +230,7 @@ public class MainActivity extends AppCompatActivity  {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -234,7 +238,6 @@ public class MainActivity extends AppCompatActivity  {
         startActivity(intent);
         finish();
     }
-
 
 }
 

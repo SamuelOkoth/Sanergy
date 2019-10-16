@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBg"
+    android:background="@color/colorAlt"
     tools:context=".ui.CreateAccountActivity">
     <LinearLayout
         android:orientation="vertical"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Sign up"
-            android:background="@color/colorAlt"
+            android:background="@color/colorBgLight"
             android:layout_marginTop="15dp"
             android:textColor="@color/colorText" />
 

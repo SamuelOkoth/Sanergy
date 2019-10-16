@@ -1,7 +1,14 @@
 package com.moringa.sanergyapp.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +24,7 @@ import com.moringa.sanergyapp.R;
 import com.moringa.sanergyapp.adapters.AssetAdapter;
 import com.moringa.sanergyapp.models.Assets;
 import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.models.NewEmployees;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -25,7 +33,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -39,7 +46,8 @@ public class EmployeeDetailFragment extends Fragment {
 
 
     private Employees employees;
-
+@BindView(R.id.sendAssetTextView)
+    TextView sendAssetTextView;
     @BindView(R.id.employeeImageView)
     ImageView mImageLabel;
     @BindView(R.id.assetNameTextView)
@@ -71,10 +79,19 @@ public class EmployeeDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_employee_detail, container, false);
         ButterKnife.bind(this, view);
 
+        sendAssetTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent(getActivity(),SendRequestActivity.class);
+                startActivity(sendIntent);
+
+            }
+        });
+
         ListView listView =(ListView) view.findViewById(R.id.mainList);
         String[] assetItems = {"Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat",
-                               "Overall","Wheelbarrow","RainCoat"};
+                "Overall","Wheelbarrow","RainCoat",
+                "Overall","Wheelbarrow","RainCoat"};
 
         ArrayAdapter <String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),

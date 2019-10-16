@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.moringa.sanergyapp.models.Employees;
+import com.moringa.sanergyapp.models.NewEmployees;
 import com.moringa.sanergyapp.ui.EmployeeDetailFragment;
 
 import java.util.ArrayList;
